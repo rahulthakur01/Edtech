@@ -136,3 +136,33 @@ exports.signUp = async (req, res) => {
         })
     }
 }
+
+// Login
+exports.logIn = async (req, res) =>{
+    try{
+
+        // get data from req ki body
+        const{email, password} = req.body;
+        
+        // validate data
+        if(!email || !password){
+            // email is missing OR password is missing      
+            return res.status(403).json({
+                success:false,
+                message: 'All fields are required, Please try again',
+            })
+        }
+        // check user registered or not
+        const user = await User.findOne({email}).populate("additionalDetails");
+        if(!user){
+            return res.status(401).json({
+                success:false,
+                message:"User not registered, Please try again",
+            })
+        }
+        
+
+    }catch(error){
+
+    }
+}
