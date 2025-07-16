@@ -1,5 +1,6 @@
 const course = require("../models/Courses");
-
+const User = require("../models/User");
+const Tag = require("../models/Tag");
 // create course
 exports.createCourse = async (req, res) => {
     // fetch data
@@ -16,7 +17,22 @@ exports.createCourse = async (req, res) => {
     }
     
   // check for instructor
+    const userId = req.user.id;
+    const instructorDetails = await User.findById({ userId });
+    if (!instructorDetails) {
+        return res.status(404).json({
+            success: false,
+            message: "Instructor details not found",
+        })
+    }
   // check given tag is valid or not
+    const tagDetails = await Tag.findById({ tag });
+    if (!tagDetails) {
+        return res.status(404).json({
+            success: false,
+            message: "Instructor details not found",
+        })
+    }
   // upload image to cloudinary
   // create entry for new courses
   //add the new course to the user schema of Instructor
