@@ -1,6 +1,7 @@
 const course = require("../models/Courses");
 const User = require("../models/User");
 const Tag = require("../models/Tag");
+const {uploadImageToCloudinary} = require("../utils/imageUploader");
 // create course
 exports.createCourse = async (req, res) => {
     // fetch data
@@ -34,6 +35,7 @@ exports.createCourse = async (req, res) => {
         })
     }
   // upload image to cloudinary
+  const thumbnailImage = await uploadImageToCloudinary(thumbnail, process.env.FLODER_NAME);
   // create entry for new courses
   //add the new course to the user schema of Instructor
   //return response
