@@ -49,7 +49,7 @@ exports.isStudent = async (req, res, next) => {
                 message:"This is proctected route for Student only"
             })
         }
-        
+        next();
     } catch (error) {
         return res.status(500).json({
             success: false,
@@ -68,7 +68,8 @@ exports.isInstructor = async (req, res, next) => {
                 message:"This is proctected route for Instructor only"
             })
         }
-        
+        next();
+
     } catch (error) {
         return res.status(500).json({
             success: false,
@@ -86,7 +87,8 @@ exports.isAdmin = async (req, res, next) => {
                 message:"This is proctected route for Admin only"
             })
         }
-        
+        next();
+
     } catch (error) {
         return res.status(500).json({
             success: false,
