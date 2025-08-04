@@ -61,3 +61,12 @@ exports.updateSubSection = async(req,res) =>{
     
   }
 }
+
+// delete subSection
+exports.deleteSubSection = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
